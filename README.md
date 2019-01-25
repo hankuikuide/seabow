@@ -1,1 +1,1 @@
-![mahua](footer-logo.svg)
+![mahua](seabow-logo.jpg)
