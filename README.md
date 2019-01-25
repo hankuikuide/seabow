@@ -1,0 +1,1 @@
+![mahua](footer-logo.svg)
