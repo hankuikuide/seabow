@@ -13,6 +13,22 @@
     <version>1.0.0</version>
     <name>seabow</name>
     <description>quick developement framework</description>
+    <packaging>pom</packaging>
+    <!--所有的父级项目的packaging都为pom，packaging默认类型jar类型，如果不做配置，
+    maven会将该项目打成jar包。作为父级项目，还有一个重要的属性，那就是modules，
+    通过modules标签将项目的所有子项目引用进来，在build父级项目时，
+    会根据子模块的相互依赖关系整理一个build顺序，然后依次build。-->
+    <!--而对于各个子项目，需要在其对应的pom文件开头声明对父级项目的引用，通过GAV实现。
+    对于子项目中自己的GAV配置，GV如果不配置，则会从父类项目的配置继承过来。
+    子模块可以通过dependencies标签来添加自己的依赖，此外子类项目的packaging值只能是war或jar-->
+
+    <!-- 如果我们的项目分成了好几个模块，那么我们构建的时候是不是有几个模块就需要构建几次了
+    （到每个模块的目录下执行mvn命令）？ 当然，你逐个构建没问题，但是非要这么麻烦的一个一个的构建吗，
+    那么简单的做法就是使用聚合，一次构建全部模块。-->
+    <modules>
+        <module>seabow-setting</module>
+        <module>seabow-user</module>
+    </modules>
 
     <properties>
         <java.version>1.8</java.version>
@@ -22,28 +38,83 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-logging</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
-            <groupId>org.mybatis.spring.boot</groupId>
-            <artifactId>mybatis-spring-boot-starter</artifactId>
-            <version>2.0.0</version>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-log4j2</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
 
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-devtools</artifactId>
-            <scope>runtime</scope>
+            <groupId>com.oracle</groupId>
+            <artifactId>ojdbc6</artifactId>
+            <version>11.2.0.4.0</version>
         </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <optional>true</optional>
+            <version>1.16.6</version>
+        </dependency>
+        <dependency>
+            <groupId>org.mybatis.spring.boot</groupId>
+            <artifactId>mybatis-spring-boot-starter</artifactId>
+            <version>1.3.2</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>org.mybatis.spring.boot</groupId>
+            <artifactId>mybatis-spring-boot-starter-test</artifactId>
+            <version>1.3.2</version>
+        </dependency>
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger2</artifactId>
+            <version>2.2.2</version>
+        </dependency>
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger-ui</artifactId>
+            <version>2.2.2</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <optional>true</optional>
+            <scope>runtime</scope><!--只在运行时起作用  打包时不打进去-->
+        </dependency>
+
+        <dependency>
+            <groupId>p6spy</groupId>
+            <artifactId>p6spy</artifactId>
+            <version>3.7.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.auth0</groupId>
+            <artifactId>java-jwt</artifactId>
+            <version>3.4.0</version>
+        </dependency>
+
+        <!--处理JSON格式-->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.2.3</version>
+        </dependency>
+
     </dependencies>
 
     <build>
@@ -51,6 +122,10 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <!--fork :  如果没有该项配置，肯呢个devtools不会起作用，即应用不会restart   这个要手动加进去 -->
+                    <fork>true</fork>
+                </configuration>
             </plugin>
         </plugins>
     </build>
