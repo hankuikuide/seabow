@@ -15,7 +15,7 @@ import java.util.Arrays;
 import java.util.concurrent.TimeUnit;
 
 /**
- * 针对所有com.crhms.medicareopinion下所有的方法添加拦截方法。
+ * 针对所有com.crhms.seabowsetting下所有的方法添加拦截方法。
  * 通过情况下只在controller层添加拦截方法即可。
  */
 @Aspect

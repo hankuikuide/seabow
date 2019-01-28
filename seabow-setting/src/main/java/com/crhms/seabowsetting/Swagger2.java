@@ -30,7 +30,7 @@ public class Swagger2 {
         return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(apiInfo())
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.crhms.medicareopinion"))
+                .apis(RequestHandlerSelectors.basePackage("com.crhms.seabow"))
                 .paths(PathSelectors.any())
                 .build()
                 .globalOperationParameters(pars);
