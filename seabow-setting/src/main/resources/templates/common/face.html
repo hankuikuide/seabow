@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>人脸认证</title>
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/twitter-bootstrap/4.2.1/js/bootstrap.min.js"></script>
+    <link href="https://cdn.bootcss.com/twitter-bootstrap/4.2.1/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<video width="400" height="300"></video>
+
+<!-- 图像画布 -->
+<canvas width="200" height="150"></canvas>
+<button id="face_login" onclick="face_login()" class="btn btn-info"><i class="icon-play"></i>&nbsp;人脸认证</button>
+<button id="face_check" onclick="face_check()" class="btn btn-info"><i class="icon-play"></i>&nbsp;人脸检测</button>
+<script>
+    function $(elem){
+        return document.querySelector(elem);
+    }
+    var canvas = $('canvas'),
+        context = canvas.getContext('2d'),
+        video = $('video'),
+        snap = $('#snap'),
+        upload = $('#upload'),
+        uploaded = $('#uploaded'),
+        mediaStreamTrack;
+    //打开摄像头
+    if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+        navigator.mediaDevices.getUserMedia({
+            video: true,
+        }).then(function(stream) {
+            mediaStreamTrack = typeof stream.stop === 'function' ? stream : stream.getTracks()[1];
+            // 旧的浏览器可能没有srcObject
+            if ("srcObject" in video) {
+                video.srcObject = stream;
+            } else {
+                // 防止再新的浏览器里使用它，应为它已经不再支持了
+                video.src = window.URL.createObjectURL(stream);
+            }
+            video.play();
+        });
+    }else if (navigator.getMedia) {
+        navigator.getMedia({
+            video: true
+        }, function(stream) {
+            mediaStreamTrack = stream.getTracks()[0];
+            video.src = (window.URL || window.webkitURL).createObjectURL(stream);
+            video.play();
+        });
+    }
+    //人脸识别参考文档：https://cloud.baidu.com/doc/FACE/
+    function face_login(){
+        context.drawImage(video, 0, 0, 200, 150);
+        jQuery.post('faceLogin', {           //指定发送图片到的servlet
+            snapData: canvas.toDataURL('image/jpg'),
+            userId:"hkk"
+        }).done(function(rs) {
+
+            //对结果集进行解析，判断是否存在人脸
+            console.log(JSON.stringify(rs));
+            if(rs.error_code == "222202"){
+                alert("没有人脸信息或人脸数量非1，请重新拍照！");
+            }else if(rs.error_code == "222207"){
+                alert("人脸库中没有您的注册信息，请先注册。");
+            }else if(rs.error_code == "223120"){
+                alert("请正确登录，不得伪造！");
+            }else if(rs.error_msg == "SUCCESS"){
+                alert("登录成功！");
+            }
+        });
+    }
+
+    function face_check(){
+        context.drawImage(video, 0, 0, 200, 150);
+        jQuery.post('faceCheck', {           //指定发送图片到的servlet
+            snapData: canvas.toDataURL('image/jpg')
+        }).done(function(rs) {
+            //对结果集进行解析，判断是否存在人脸
+            console.log(JSON.stringify(rs));
+            if(rs.error_code == "222202"){
+                alert("没有人脸信息或人脸数量非1，请重新拍照！");
+            }else if(rs.error_code == "222207"){
+                alert("人脸库中没有您的注册信息，请先注册。");
+            }else if(rs.error_code == "223120"){
+                alert("请正确登录，不得伪造！");
+            }else if(rs.error_msg == "SUCCESS"){
+                context.strokeStyle = "#f00";
+                var face_list = rs.result.face_list;
+                console.dir(face_list);
+                face_list.forEach(function (item,index,array) {
+                    var location = item.location;
+                    console.dir(location);
+                    context.strokeRect(location.left,location.top,location.width,location.height);
+                });
+                alert("检测成功！");
+
+            }
+        });
+    }
+</script>
+</body>
+</html>
