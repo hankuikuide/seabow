@@ -1,4 +1,4 @@
-package com.crhms.seabowsetting.config;
+package com.crhms.seabowinfrastructure.config;
 
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;

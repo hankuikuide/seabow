@@ -1,6 +1,6 @@
 package com.crhms.seabowsetting.Interceptor;
 
-import com.crhms.seabowsetting.model.AjaxResponse;
+import com.crhms.seabowinfrastructure.model.AjaxResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;

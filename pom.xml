@@ -28,6 +28,7 @@
     <modules>
         <module>seabow-setting</module>
         <module>seabow-user</module>
+        <module>seabow-infrastructure</module>
     </modules>
 
     <properties>

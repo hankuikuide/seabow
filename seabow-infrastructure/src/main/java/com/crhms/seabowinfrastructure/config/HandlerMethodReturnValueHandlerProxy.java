@@ -1,10 +1,9 @@
-package com.crhms.seabowsetting.config;
+package com.crhms.seabowinfrastructure.config;
 
-import com.crhms.seabowsetting.annotation.NonWrapperResultAnnotation;
-import com.crhms.seabowsetting.model.AjaxResponse;
+import com.crhms.seabowinfrastructure.annotation.NonWrapperResultAnnotation;
+import com.crhms.seabowinfrastructure.model.AjaxResponse;
 import org.springframework.core.MethodParameter;
 import org.springframework.core.annotation.AnnotatedElementUtils;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.request.NativeWebRequest;
 import org.springframework.web.method.support.HandlerMethodReturnValueHandler;
 import org.springframework.web.method.support.ModelAndViewContainer;

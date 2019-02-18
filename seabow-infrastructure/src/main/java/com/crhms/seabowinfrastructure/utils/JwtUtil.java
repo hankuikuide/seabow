@@ -1,8 +1,8 @@
-package com.crhms.seabowsetting.infrastructure;
+package com.crhms.seabowinfrastructure.utils;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
-import com.crhms.seabowsetting.model.User;
+import com.crhms.seabowinfrastructure.model.User;
 
 public class JwtUtil {
 

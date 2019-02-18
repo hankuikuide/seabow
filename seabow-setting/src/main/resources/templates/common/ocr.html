@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>文字识别</title>
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/twitter-bootstrap/4.2.1/js/bootstrap.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap-fileinput/4.5.2/js/fileinput.min.js"></script>
+
+    <link href="https://cdn.bootcss.com/bootstrap-fileinput/4.5.2/css/fileinput.min.css" rel="stylesheet">
+    <link href="https://cdn.bootcss.com/twitter-bootstrap/4.2.1/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<h1>文字识别</h1>
+<form enctype="multipart/form-data" id="ocr-form" action="/ocr" method="post">
+    <div class="col-sm-4">
+        <div class="form-group">
+            <input type="file" name="file" id="file1" class="file">
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <h2>识别结果：</h2>
+        <span id="res"></span>
+    </div>
+</form>
+<script>
+    $("#file1").fileinput({
+        uploadUrl: 'ocrUpload', //你必须在这里设置一个有效的URL，否则你会得到一个错误
+        uploadAsync: true, //AJAX设置同步，异步的上传方式 （同步）
+        allowedFileExtensions: ['jpg', 'png', 'gif'],//文件类型
+        showUpload: true, //是否显示上传按钮
+        //browseClass: "btn btn-primary", //按钮样式
+        showRemove : true, //显示移除按钮
+        dropZoneEnabled: true,//是否显示拖拽区域
+        overwriteInitial: false,
+        //maxFileSize:0,//单位为kb，如果为0表示不限制文件大小
+        maxFilesNum: 10,
+        maxFileCount: 4, //表示允许同时上传的最大文件个数
+        minFileCount: 0,	//最少文件
+        validateInitialCount:false//异步上传返回结果处理
+    }).on('fileuploaded', function(event, data, previewId, index) {
+        // alert(JSON.stringify(data));
+        var res_arr = data.response.words_result;
+        for(var key in res_arr){
+            console.log(res_arr[key].words);
+            $('#res').append(res_arr[key].words + "<br/>");
+        }
+        // console.log(JSON.stringify(data));
+    });
+</script>
+</body>
+</html>

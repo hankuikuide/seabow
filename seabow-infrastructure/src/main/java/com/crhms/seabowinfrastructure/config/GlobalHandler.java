@@ -1,4 +1,4 @@
-package com.crhms.seabowsetting.config;
+package com.crhms.seabowinfrastructure.config;
 
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.web.bind.WebDataBinder;

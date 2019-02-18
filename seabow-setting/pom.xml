@@ -11,4 +11,13 @@
     <artifactId>seabow-setting</artifactId>
     <name>seabow-setting</name>
     <description>Demo project for Spring Boot</description>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.crhms</groupId>
+            <artifactId>seabow-infrastructure</artifactId>
+            <version>1.0.0</version>
+            <scope>compile</scope>
+        </dependency>
+    </dependencies>
 </project>

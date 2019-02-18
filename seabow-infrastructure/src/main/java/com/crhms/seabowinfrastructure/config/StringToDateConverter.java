@@ -1,4 +1,4 @@
-package com.crhms.seabowsetting.config;
+package com.crhms.seabowinfrastructure.config;
 
 import io.micrometer.core.instrument.util.StringUtils;
 import org.springframework.core.convert.converter.Converter;

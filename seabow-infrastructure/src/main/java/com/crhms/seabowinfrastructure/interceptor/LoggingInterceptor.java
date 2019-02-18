@@ -1,6 +1,6 @@
-package com.crhms.seabowsetting.Interceptor;
+package com.crhms.seabowinfrastructure.interceptor;
 
-import com.crhms.seabowsetting.model.AjaxResponse;
+import com.crhms.seabowinfrastructure.model.AjaxResponse;
 import com.google.common.base.Stopwatch;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
@@ -23,7 +23,7 @@ import java.util.concurrent.TimeUnit;
 @Slf4j
 public class LoggingInterceptor {
 
-    @Pointcut("execution(public * com.crhms.seabowsetting.controller.*.*(..))")
+    @Pointcut("execution(public * com.crhms.*.controller.*.*(..))")
     public void exceptionLog(){}
 
     @Around("exceptionLog()()")

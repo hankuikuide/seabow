@@ -1,6 +1,6 @@
 package com.crhms.seabowsetting.service;
 
-import com.crhms.seabowsetting.model.User;
+import com.crhms.seabowinfrastructure.model.User;
 import org.springframework.stereotype.Service;
 
 @Service

@@ -1,4 +1,4 @@
-package com.crhms.seabowsetting.annotation;
+package com.crhms.seabowinfrastructure.annotation;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -7,6 +7,6 @@ import java.lang.annotation.Target;
 
 @Target({ElementType.METHOD, ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
-public @interface ValidateAnnotation {
+public @interface NonWrapperResultAnnotation {
     boolean required() default true;
 }

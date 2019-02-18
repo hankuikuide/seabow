@@ -1,4 +1,4 @@
-package com.crhms.seabowsetting.model;
+package com.crhms.seabowinfrastructure.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

@@ -1,4 +1,4 @@
-package com.crhms.seabowsetting.annotation;
+package com.crhms.seabowinfrastructure.annotation;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
