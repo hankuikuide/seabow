@@ -19,6 +19,8 @@ public class User {
 
     private String password;
 
+    private String encryptPwd;
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private List<Role> roles;
 

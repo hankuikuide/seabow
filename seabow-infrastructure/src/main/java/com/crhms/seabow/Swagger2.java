@@ -38,9 +38,9 @@ public class Swagger2 {
 
     private ApiInfo apiInfo(){
         return new ApiInfoBuilder()
-                .title("Sping Boot Swagger Api Document ")
+                .title("Sping Boot Swagger Api Document1111 ")
                 .description("for more information, please refer my blog:http://www.baidu.com")
-                .termsOfServiceUrl("http://localhost:8080")
+                .termsOfServiceUrl("http://localhost:8081")
                 .contact("admin")
                 .version("1.0")
                 .build();

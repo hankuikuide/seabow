@@ -6,7 +6,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 @Slf4j
-//@ComponentScan(basePackages = {"com.crhms.seabow"})
 public class SeabowSettingApplication {
 
     public static void main(String[] args) {

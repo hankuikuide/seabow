@@ -47,4 +47,7 @@ spring:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.MySQL5Dialect
-
+#  spring.data.mongodb.uri=mongodb://name:pass@localhost:27017/test
+  data:
+    mongodb:
+      uri: mongodb://10.117.150.41:27017/bmitest

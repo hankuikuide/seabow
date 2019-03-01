@@ -1,3 +1,4 @@
+/*
 package com.crhms.seabow.Interceptor;
 
 import org.springframework.context.annotation.Bean;
@@ -19,3 +20,4 @@ public class InterceptorConfig implements WebMvcConfigurer {
         return  new AuthenticationInterceptor();
     }
 }
+*/
