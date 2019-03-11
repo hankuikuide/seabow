@@ -43,8 +43,9 @@ public class DbShiroRealm extends AuthorizingRealm {
         UsernamePasswordToken userpasswordToken = (UsernamePasswordToken)token;
         String username = userpasswordToken.getUsername();
         User user = userService.findByUsername(username);
-        if(user == null)
+        if(user == null) {
             throw new AuthenticationException("用户名或者密码错误");
+        }
 
         return new SimpleAuthenticationInfo(user, user.getEncryptPwd(), ByteSource.Util.bytes(encryptSalt), "dbRealm");
     }
@@ -60,10 +61,11 @@ public class DbShiroRealm extends AuthorizingRealm {
             roles = userService.getUserRoles(user.getId());
             user.setRoles(roles);
         }
-        if (roles != null)
+        if (roles != null) {
             for (String name : roleNames) {
                 simpleAuthorizationInfo.addRole(name);
             }
+        }
 
 
         return simpleAuthorizationInfo;

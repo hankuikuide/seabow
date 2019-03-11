@@ -20,12 +20,15 @@ public class AnyRolesAuthorizationFilter  extends AuthorizationFilter {
     protected boolean isAccessAllowed(ServletRequest servletRequest, ServletResponse servletResponse, Object mappedValue) throws Exception {
         Subject subject = getSubject(servletRequest, servletResponse);
         String[] rolesArray = (String[]) mappedValue;
-        if (rolesArray == null || rolesArray.length == 0) { //没有角色限制，有权限访问
+        //没有角色限制，有权限访问
+        if (rolesArray == null || rolesArray.length == 0) {
             return true;
         }
         for (String role : rolesArray) {
-            if (subject.hasRole(role)) //若当前用户是rolesArray中的任何一个，则有权限访问
+            //若当前用户是rolesArray中的任何一个，则有权限访问
+            if (subject.hasRole(role)) {
                 return true;
+            }
         }
         return false;
     }

@@ -25,6 +25,7 @@ public class BillController {
     }
     @GetMapping("/findAll")
     public List<Bill> findAll() {
+
         return billService.FindAll();
     }
 }

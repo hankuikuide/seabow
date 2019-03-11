@@ -25,7 +25,7 @@ public class MongoController {
     @GetMapping("/mongotest")
     public void add_mongo() {
         Stopwatch stopwatch = Stopwatch.createStarted();
-        for (int i = 0; i < 10000; i++) {
+        for (int i = 0; i < 10; i++) {
             Bill bill = new Bill();
             bill.setHospitalName("HospitalName"+ i);
             bill.setHospitalId("HospitalId" +i);
