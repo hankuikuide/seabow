@@ -52,6 +52,11 @@ public class JWTShiroRealm extends AuthorizingRealm {
         return authenticationInfo;
     }
 
+    /**
+     * 授权
+     * @param principals
+     * @return
+     */
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
         return new SimpleAuthorizationInfo();

@@ -1,23 +1,29 @@
 package com.crhms.seabow.security;
 
+import com.alibaba.fastjson.JSONObject;
 import com.crhms.seabow.model.User;
 import com.crhms.seabow.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.http.HttpStatus;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationToken;
 import org.apache.shiro.subject.Subject;
 import org.apache.shiro.web.filter.authc.AuthenticatingFilter;
 import org.apache.shiro.web.util.WebUtils;
-import org.apache.http.HttpStatus;
 
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.io.PrintWriter;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 @Slf4j
 public class JwtAuthFilter extends AuthenticatingFilter {
@@ -27,6 +33,7 @@ public class JwtAuthFilter extends AuthenticatingFilter {
 
     public JwtAuthFilter(UserService userService) {
         this.userService = userService;
+        System.out.println("...................JwtAuthFilter...................");
         this.setLoginUrl("/login");
     }
 
@@ -35,8 +42,10 @@ public class JwtAuthFilter extends AuthenticatingFilter {
      */
     @Override
     protected boolean isAccessAllowed(ServletRequest request, ServletResponse response, Object mappedValue) {
-        if (this.isLoginRequest(request, response))
+        System.out.println("..................................isAccessAllowed.................................");
+        if (this.isLoginRequest(request, response)) {
             return true;
+        }
         boolean allowed = false;
         try {
 
@@ -57,9 +66,15 @@ public class JwtAuthFilter extends AuthenticatingFilter {
      */
     @Override
     protected AuthenticationToken createToken(ServletRequest servletRequest, ServletResponse servletResponse) {
+        System.out.println("..................................createToken.................................");
         String jwtToken = getAuthzHeader(servletRequest);
-        if (StringUtils.isNotBlank(jwtToken) && !JwtUtils.isTokenExpired(jwtToken))
-            return new JWTToken(jwtToken);
+        if (StringUtils.isNotBlank(jwtToken)) {
+            if (!JwtUtils.isTokenExpired(jwtToken)) {
+                return new JWTToken(jwtToken);
+            } else {
+                throw new AuthenticationException("token过期，请重新登录");
+            }
+        }
 
         return null;
     }
@@ -73,8 +88,11 @@ public class JwtAuthFilter extends AuthenticatingFilter {
         httpResponse.setCharacterEncoding("UTF-8");
         httpResponse.setContentType("application/json;charset=UTF-8");
         httpResponse.setStatus(HttpStatus.SC_NON_AUTHORITATIVE_INFORMATION);
+
         fillCorsHeader(WebUtils.toHttp(servletRequest), httpResponse);
-        return false;
+
+        throw new AuthenticationException("token认证失败");
+        //return false;
     }
 
     /**
@@ -92,8 +110,9 @@ public class JwtAuthFilter extends AuthenticatingFilter {
                 newToken = userService.generateJwtToken(user.getName());
             }
         }
-        if (StringUtils.isNotBlank(newToken))
+        if (StringUtils.isNotBlank(newToken)) {
             httpResponse.setHeader("x-auth-token", newToken);
+        }
 
         return true;
     }

@@ -51,7 +51,16 @@ public class LoginController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
-
+    @GetMapping(value = "/logout")
+    public ResponseEntity<Void> logout() {
+        Subject subject = SecurityUtils.getSubject();
+        if(subject.getPrincipals() != null) {
+            User user = (User)subject.getPrincipals().getPrimaryPrincipal();
+            userService.deleteLoginInfo(user.getName());
+        }
+        SecurityUtils.getSubject().logout();
+        return ResponseEntity.ok().build();
+    }
   /*  @GetMapping(value = "/logout")
     public ResponseEntity<Void> logout() {
         Subject subject = SecurityUtils.getSubject();

@@ -23,8 +23,8 @@ public class Swagger2 {
     public Docket createRestApi(){
         ParameterBuilder tokenPar = new ParameterBuilder();
         List<Parameter> pars = new ArrayList<>();
-        tokenPar.name("token").description("令牌").modelRef(new ModelRef("string")).parameterType("header").required(false).build();
-        tokenPar.defaultValue("eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJzdHJpbmcifQ.ylDXcyPnihJ1F1vUs8c3OnUwMxddotoJn6dXXNICphA");
+        tokenPar.name("x-auth-token").description("令牌").modelRef(new ModelRef("string")).parameterType("header").required(false).build();
+        tokenPar.defaultValue("eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1NTI0ODQxNjMsImlhdCI6MTU1MjQ0MDk2MywidXNlcm5hbWUiOiJoa2sifQ.Ai0mOFXn6iGPoaTf7wfEhEN6RtBuOzIJqPK1F-3jhvI");
         pars.add(tokenPar.build());
 
         return new Docket(DocumentationType.SWAGGER_2)

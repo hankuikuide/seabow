@@ -4,12 +4,9 @@ import com.crhms.seabow.model.Role;
 import com.crhms.seabow.model.User;
 import com.crhms.seabow.repository.UserRepository;
 import com.crhms.seabow.security.JwtUtils;
-import org.apache.shiro.crypto.hash.Sha256Hash;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 @Service
@@ -38,9 +35,9 @@ public class UserService {
      * @param username
      */
     public String generateJwtToken(String username) {
-        String salt = "12345";//JwtUtils.generateSalt();
+        String salt = "F12839WhsnnEV$#23b";//JwtUtils.generateSalt();
 
-        return JwtUtils.sign(username, salt, 3600); //生成jwt token，设置过期时间为1小时
+        return JwtUtils.sign(username, salt, 3600 * 12); //生成jwt token，设置过期时间为1小时
     }
 
     /**

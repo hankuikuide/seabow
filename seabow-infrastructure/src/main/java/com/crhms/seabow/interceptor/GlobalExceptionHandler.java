@@ -5,6 +5,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+import java.util.HashMap;
+import java.util.Map;
+
 @RestControllerAdvice
 @Slf4j
 public class GlobalExceptionHandler {
@@ -22,5 +25,18 @@ public class GlobalExceptionHandler {
         }
         log.error(e.getMessage());
         return r;
+    }
+
+    /**
+     * 捕获自定义异常
+     * @param e
+     * @return
+     */
+    @ExceptionHandler(value = FriendlyException.class)
+    public Map<String,Object> errorHandle(FriendlyException e){
+        Map<String,Object> map = new HashMap<String,Object>();
+        map.put("code",e.getCode());
+        map.put("msg",e.getMsg());
+        return map;
     }
 }

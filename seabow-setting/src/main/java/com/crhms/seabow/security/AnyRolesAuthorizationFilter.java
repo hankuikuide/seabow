@@ -1,6 +1,7 @@
 package com.crhms.seabow.security;
 
 import org.apache.http.HttpStatus;
+import org.apache.shiro.authz.AuthorizationException;
 import org.apache.shiro.subject.Subject;
 import org.apache.shiro.web.filter.authz.AuthorizationFilter;
 import org.apache.shiro.web.util.WebUtils;
@@ -30,7 +31,7 @@ public class AnyRolesAuthorizationFilter  extends AuthorizationFilter {
                 return true;
             }
         }
-        return false;
+        throw new AuthorizationException("没有权限访问此资源");
     }
     /**
      * 权限校验失败，错误处理
