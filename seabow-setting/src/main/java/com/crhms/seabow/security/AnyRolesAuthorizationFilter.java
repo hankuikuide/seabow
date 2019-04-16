@@ -1,5 +1,7 @@
 package com.crhms.seabow.security;
 
+import com.crhms.seabow.model.User;
+import jdk.nashorn.internal.ir.RuntimeNode;
 import org.apache.http.HttpStatus;
 import org.apache.shiro.authz.AuthorizationException;
 import org.apache.shiro.subject.Subject;
@@ -31,6 +33,7 @@ public class AnyRolesAuthorizationFilter  extends AuthorizationFilter {
                 return true;
             }
         }
+        
         throw new AuthorizationException("没有权限访问此资源");
     }
     /**

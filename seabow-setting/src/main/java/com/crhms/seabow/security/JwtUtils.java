@@ -4,11 +4,14 @@ import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTDecodeException;
 import com.auth0.jwt.interfaces.DecodedJWT;
+import lombok.Data;
+import lombok.val;
 import org.apache.shiro.crypto.SecureRandomNumberGenerator;
 
 import java.io.UnsupportedEncodingException;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashSet;
 
 public class JwtUtils {
     /**
@@ -38,12 +41,17 @@ public class JwtUtils {
      * @return token中包含的签发时间
      */
     public static Date getIssuedAt(String token) {
+        val aa = new HashSet<String>();
+
         try {
             DecodedJWT jwt = JWT.decode(token);
             return jwt.getIssuedAt();
         } catch (JWTDecodeException e) {
             return null;
         }
+
+
+
     }
 
     /**

@@ -32,7 +32,7 @@ public class JWTCredentialsMatcher implements CredentialsMatcher {
             verifier.verify(token);
             return true;
         } catch (JWTVerificationException e) {
-            log.error("Token Error:{}", e.getMessage());
+            log.error("Token 111Error:{}", e.getMessage());
         }
         return false;
     }

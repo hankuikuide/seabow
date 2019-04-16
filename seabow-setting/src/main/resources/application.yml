@@ -15,7 +15,8 @@ management:
 #    url: jdbc:p6spy:oracle:thin:@(DESCRIPTION =    (ADDRESS = (PROTOCOL = TCP)(HOST = 10.117.130.29)(PORT = 1521))    (CONNECT_DATA =      (SERVER = DEDICATED)      (SERVICE_NAME = ora29a)    ))
 #    username: bmitest
 #    password: bmitest
-#    driver-class-name: com.p6spy.engine.spy.P6SpyDriver
+#    #driver-class-name: com.p6spy.engine.spy.P6SpyDriver
+#    driver-class-name: oracle.jdbc.driver.OracleDriver
 #  jackson:
 #    date-format: yyyy-MM-dd HH:mm:ss
 #    time-zone: GMT+8

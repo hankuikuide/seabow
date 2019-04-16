@@ -1,7 +1,7 @@
 ![mahua](seabow-logo.jpg)
 
 # Seabow介绍
-Seabow是一套基于spring boot2.0的一套快速开发框架，致力于集成了一系列最佳实践，使开发人员能够基于seabow快速的开发项目，不用过多的把精力用于搭建开发框架，只需要编写自己的业务逻辑即可。
+Seabow是一套基于spring boot2.0的一套快速开发框架，致力于集成了一系列最佳实践，使开发人员能够基于seabow快速的开发项目，不用过多的把精力用于搭建开发框架，只需要编写自己的业务逻辑即可。
 
 Seabow是前后端分离的项目，前端采用Vuejs+Element.服务端为基于spring boot2.0的webapi
 
