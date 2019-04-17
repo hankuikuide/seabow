@@ -13,7 +13,7 @@ public class SeabowUserApplication {
 
         SpringApplication.run(SeabowUserApplication.class, args);
 
-        log.info("项目启动成功!！！！！！！！！");
+        log.info("user 项目启动成功!！！！！！！！！");
 
     }
 

@@ -8,11 +8,9 @@ import com.crhms.seabow.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections.map.HashedMap;
 import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -31,9 +29,8 @@ public class LoginController {
     private UserService userService;
 
     @PostMapping(value = "/login")
-    public ResponseEntity<Void> login(@RequestBody LoginDto loginInfo, HttpServletRequest request, HttpServletResponse response){
+    public User login(@RequestBody LoginDto loginInfo, HttpServletRequest request, HttpServletResponse response) {
         Subject subject = SecurityUtils.getSubject();
-        try {
             //将用户请求参数封装后，直接提交给Shiro处理
             UsernamePasswordToken token = new UsernamePasswordToken(loginInfo.getUserName(), loginInfo.getPassword());
             subject.login(token);
@@ -42,14 +39,7 @@ public class LoginController {
             String newToken = userService.generateJwtToken(user.getName());
             response.setHeader("x-auth-token", newToken);
 
-            return ResponseEntity.ok().build();
-        } catch (AuthenticationException e) {
-            // 如果校验失败，shiro会抛出异常，返回客户端失败
-            log.error("User {} login fail, Reason:{}", loginInfo.getUserName(), e.getMessage());
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-        }
+        return user;
     }
     @GetMapping(value = "/logout")
     public ResponseEntity<Void> logout() {
@@ -108,8 +98,8 @@ public class LoginController {
     @RequestMapping(value = "/addUser",method = RequestMethod.POST)
     public String addUser(){
         Map<String,Object> map =new HashedMap();
-        map.put("username", "hkk");
-        map.put("password", "hkk123");
+        map.put("username", "admin");
+        map.put("password", "123456");
         User user = loginService.addUser(map);
         return "addUser is ok! \n" + user;
     }

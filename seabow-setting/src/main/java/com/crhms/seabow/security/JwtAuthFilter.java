@@ -72,7 +72,7 @@ public class JwtAuthFilter extends AuthenticatingFilter {
             if (!JwtUtils.isTokenExpired(jwtToken)) {
                 return new JWTToken(jwtToken);
             } else {
-                throw new AuthenticationException("token过期，请重新登录");
+                throw new AuthenticationException("createToken token过期，请重新登录");
             }
         }
 

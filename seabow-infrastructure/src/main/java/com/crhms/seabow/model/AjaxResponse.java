@@ -9,6 +9,8 @@ public class AjaxResponse<T> {
 
     private String msg;
 
+    private int total;
+
     private T data;
 
 }

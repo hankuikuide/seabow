@@ -1,13 +1,18 @@
 package com.crhms.seabow.service;
 
+import com.crhms.seabow.model.Permission;
 import com.crhms.seabow.model.Role;
 import com.crhms.seabow.model.User;
 import com.crhms.seabow.repository.UserRepository;
 import com.crhms.seabow.security.JwtUtils;
+import org.apache.shiro.crypto.hash.Sha256Hash;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class UserService {
@@ -89,6 +94,32 @@ public class UserService {
         User user = userRepository.getOne(userId);
 
         return user.getRoles();
+    }
+
+    public List<User> getAllUsers(){
+        List<User> users = userRepository.findAll();
+
+        return users;
+    }
+
+    public User addUser(User user) {
+
+        String encryptPwd =new Sha256Hash(user.getPassword(), encryptSalt).toHex();
+        user.setEncryptPwd(encryptPwd);
+        user.setSalt(encryptSalt);
+        user.setCreateDate(new Date());
+        List<Permission> permissions = new ArrayList<>();
+        Permission permission = new Permission();
+        permission.setPermissiom("add");
+        permissions.add(permission);
+
+        List<Role> roles = new ArrayList<>();
+        Role role = new Role();
+        role.setRoleName("admin");
+        role.setPermission(permissions);
+        user.setRoles(roles);
+        userRepository.save(user);
+        return user;
     }
 
 }
