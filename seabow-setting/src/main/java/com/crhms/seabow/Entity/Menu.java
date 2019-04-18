@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -24,6 +25,8 @@ public class Menu implements Serializable {
     private String name;
     private String iconCls;
     private Long parentId;
+    private Date createDate;
+    private Integer state;
     private boolean keepAlive;
     private boolean requireAuth;
 
