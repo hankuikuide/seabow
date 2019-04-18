@@ -13,6 +13,8 @@ import java.util.List;
 @Data
 public class UserDto {
 
+    private Integer id;
+
     private String name;
 
     private String password;
@@ -25,5 +27,5 @@ public class UserDto {
 
     private String email;
 
-    private String state;
+    private Integer state;
 }

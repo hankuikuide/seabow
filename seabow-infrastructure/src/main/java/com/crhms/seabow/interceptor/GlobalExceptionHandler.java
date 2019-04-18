@@ -17,10 +17,10 @@ public class GlobalExceptionHandler {
         AjaxResponse r = new AjaxResponse();
         if (e instanceof RuntimeException){
             RuntimeException selectNoFindException = (RuntimeException) e;
-            r.setStatus(-1);
+            r.setStatus(500);
             r.setMsg(selectNoFindException.getMessage());
         } else {
-            r.setStatus(-1);
+            r.setStatus(500);
             r.setMsg("系统错误");
         }
         log.error(e.getMessage());
@@ -35,7 +35,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(value = FriendlyException.class)
     public Map<String,Object> errorHandle(FriendlyException e){
         Map<String,Object> map = new HashMap<String,Object>();
-        map.put("code",e.getCode());
+        map.put("status",e.getCode());
         map.put("msg",e.getMsg());
         return map;
     }

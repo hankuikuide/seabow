@@ -41,4 +41,13 @@ public class UserController {
         Map<String, Object> map = new HashMap<>();
         return "ok";
     }
+
+    @PostMapping(value = "/editUser")
+    public String editUser(@RequestBody UserDto userDto) {
+        log.info(userDto.toString());
+        ModelMapper modelMapper = new ModelMapper();
+        User user = modelMapper.map(userDto, User.class);
+        userService.editUser(user);
+        return "ok";
+    }
 }

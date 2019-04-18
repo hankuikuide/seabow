@@ -49,7 +49,7 @@ public class LoggingInterceptor {
 
             ajaxResponse = new AjaxResponse();
             ajaxResponse.setMsg("出错了！！！");
-            ajaxResponse.setStatus(-1);
+            ajaxResponse.setStatus(500);
             return ajaxResponse;
         }
     }

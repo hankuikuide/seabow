@@ -40,7 +40,7 @@ public class User {
 
     private String email;
 
-    private String state;
+    private Integer state;
 
     private Date createDate;
 }

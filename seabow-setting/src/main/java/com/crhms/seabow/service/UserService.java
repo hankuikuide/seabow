@@ -122,4 +122,17 @@ public class UserService {
         return user;
     }
 
+    public User editUser(User u) {
+        User user = userRepository.getOne(u.getId());
+        user.setCreateDate(new Date());
+        user.setUserName(u.getUserName());
+        user.setName(u.getName());
+        user.setEmail(u.getEmail());
+        user.setAddress(u.getAddress());
+        user.setState(u.getState());
+        userRepository.save(user);
+        return user;
+
+    }
+
 }
