@@ -2,10 +2,12 @@ package com.crhms.seabow.controller;
 
 import com.crhms.seabow.model.User;
 import com.crhms.seabow.model.UserDto;
+import com.crhms.seabow.model.UserSearch;
 import com.crhms.seabow.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
@@ -20,14 +22,13 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @GetMapping(value = "/getAllUsers")
-    public Map getAllUsers() {
+    @PostMapping(value = "/getAllUsers")
+    public Map getAllUsers(@RequestBody UserSearch search) {
         Map<String, Object> map = new HashMap();
-        log.info("...........getAllUsers...........");
-        List<User> users = userService.getAllUsers();
+        Page<User> users = userService.getAllUsers(search);
 
-        map.put("total", users.size());
-        map.put("list", users);
+        map.put("total", users.getTotalElements());
+        map.put("list", users.getContent());
         return  map;
     }
 

@@ -3,10 +3,14 @@ package com.crhms.seabow.service;
 import com.crhms.seabow.model.Permission;
 import com.crhms.seabow.model.Role;
 import com.crhms.seabow.model.User;
+import com.crhms.seabow.model.UserSearch;
 import com.crhms.seabow.repository.UserRepository;
 import com.crhms.seabow.security.JwtUtils;
 import org.apache.shiro.crypto.hash.Sha256Hash;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -96,8 +100,10 @@ public class UserService {
         return user.getRoles();
     }
 
-    public List<User> getAllUsers(){
-        List<User> users = userRepository.findAll();
+    public Page<User> getAllUsers(UserSearch search){
+        Pageable pageable = PageRequest.of(search.getPageNum(),search.getPageSize());
+
+        Page<User> users = userRepository.findAll(pageable);
 
         return users;
     }
