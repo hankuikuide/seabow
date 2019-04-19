@@ -19,7 +19,7 @@ public class MenuService {
     }
 
     public Menu addMenu(Menu menu) {
-
+        menu.setCreateDate(new Date());
         menuRepository.save(menu);
         return menu;
     }
@@ -33,6 +33,7 @@ public class MenuService {
         menu.setIconCls(u.getIconCls());
         menu.setParentId(u.getParentId());
         menu.setState(u.getState());
+        menu.setLeaf(u.getLeaf());
         menuRepository.save(menu);
         return menu;
 

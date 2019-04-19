@@ -15,4 +15,5 @@ public class MenuDto {
     private Integer state;
     private boolean keepAlive;
     private boolean requireAuth;
+    private Integer leaf;
 }

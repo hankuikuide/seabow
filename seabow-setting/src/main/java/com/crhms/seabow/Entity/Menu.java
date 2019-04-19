@@ -29,6 +29,7 @@ public class Menu implements Serializable {
     private Integer state;
     private boolean keepAlive;
     private boolean requireAuth;
+    private Integer leaf;
 
 
 }
