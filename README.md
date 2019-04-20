@@ -39,7 +39,7 @@ Seabow是前后端分离的项目，前端采用Vuejs+Element.服务端为基于
 * 数据有效性验证
 * 日志记录，自动记录各层的参数和返回值，请求处理时间
 * 模块化开发
-* 文件上传
+* 文件上传 头像裁剪处理
 * Unit Of Work工作单元模式
 * 自动生成接口文档
 * 自动生成model的getter,setter,tostring,constructor等方法
