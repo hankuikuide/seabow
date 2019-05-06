@@ -1,5 +1,5 @@
 /*
-package com.crhms.seabow.Interceptor;
+package com.crhms.seabow.interceptor;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

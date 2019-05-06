@@ -1,5 +1,5 @@
 /*
-package com.crhms.seabow.Interceptor;
+package com.crhms.seabow.interceptor;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTVerifier;

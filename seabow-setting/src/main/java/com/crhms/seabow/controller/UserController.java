@@ -1,5 +1,6 @@
 package com.crhms.seabow.controller;
 
+import com.crhms.seabow.interceptor.SystemControllerLog;
 import com.crhms.seabow.model.User;
 import com.crhms.seabow.model.UserDto;
 import com.crhms.seabow.model.UserSearch;
@@ -22,6 +23,7 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    @SystemControllerLog(description = "获取用户信息")
     @PostMapping(value = "/getAllUsers")
     public Map getAllUsers(@RequestBody UserSearch search) {
         Map<String, Object> map = new HashMap();

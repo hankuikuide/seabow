@@ -6,6 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
@@ -22,6 +23,7 @@ import java.util.concurrent.TimeUnit;
 @Component
 @Slf4j
 public class LoggingInterceptor {
+
 
     @Pointcut("execution(public * com.crhms.seabow.controller.*.*(..))")
     public void exceptionLog(){}

@@ -1,5 +1,6 @@
 package com.crhms.seabow.controller;
 
+import com.crhms.seabow.interceptor.SystemControllerLog;
 import com.crhms.seabow.model.LoginDto;
 import com.crhms.seabow.model.Role;
 import com.crhms.seabow.model.User;
@@ -28,6 +29,7 @@ public class LoginController {
     @Autowired
     private UserService userService;
 
+    @SystemControllerLog(description = "登录")
     @PostMapping(value = "/login")
     public User login(@RequestBody LoginDto loginInfo, HttpServletRequest request, HttpServletResponse response) {
         Subject subject = SecurityUtils.getSubject();
@@ -42,6 +44,7 @@ public class LoginController {
         return user;
     }
     @GetMapping(value = "/logout")
+    @SystemControllerLog(description = "退出")
     public ResponseEntity<Void> logout() {
         Subject subject = SecurityUtils.getSubject();
         if(subject.getPrincipals() != null) {

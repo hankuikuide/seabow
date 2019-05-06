@@ -24,7 +24,7 @@ public class Swagger2 {
         ParameterBuilder tokenPar = new ParameterBuilder();
         List<Parameter> pars = new ArrayList<>();
         tokenPar.name("x-auth-token").description("令牌").modelRef(new ModelRef("string")).parameterType("header").required(false).build();
-        tokenPar.defaultValue("eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1NTU1OTMxOTUsImlhdCI6MTU1NTU0OTk5NSwidXNlcm5hbWUiOiJhZG1pbiJ9.NWLSXoH0rznMAjfgdOqP-SojGl2MgKvVoekxdCuv6fs");
+        tokenPar.defaultValue("eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1NTcxOTcwNDMsImlhdCI6MTU1NzE1Mzg0MywidXNlcm5hbWUiOiJhZG1pbiJ9.vpmfi3We7pgovhLpFscJo4ycrDUMvC4dWJ5BXA1zNfY");
         pars.add(tokenPar.build());
 
         return new Docket(DocumentationType.SWAGGER_2)
