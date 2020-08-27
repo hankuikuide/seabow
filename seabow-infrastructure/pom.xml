@@ -6,7 +6,6 @@
         <groupId>com.crhms</groupId>
         <artifactId>seabow</artifactId>
         <version>1.0.0</version>
-        <relativePath>../pom.xml</relativePath> <!--与不配置一样,默认就是寻找上级目录的pom.xml-->
     </parent>
     <artifactId>seabow-infrastructure</artifactId>
     <name>seabow-infrastructure</name>

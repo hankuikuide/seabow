@@ -1,6 +1,6 @@
 package com.crhms.seabow.config;
 
-import com.crhms.seabow.annotation.NonWrapperResultAnnotation;
+import com.crhms.seabow.annotations.NonWrapperResultAnnotation;
 import com.crhms.seabow.model.AjaxResponse;
 import org.springframework.core.MethodParameter;
 import org.springframework.core.annotation.AnnotatedElementUtils;

@@ -29,11 +29,13 @@ management:
 file:
   path: C:/tools/
 spring:
+  profiles:
+    active: prod
   datasource:
-    url: jdbc:mysql://10.117.150.34:33306/seabow?characterEncoding=utf-8
-    username: root
-    password: 2018@Com.
-    driver-class-name: com.mysql.jdbc.Driver
+    #url: jdbc:log4jdbc:mysql://10.117.150.34:33306/seabow?characterEncoding=utf-8
+    #username: root
+    #password: 2018@Com.
+    #driver-class-name: net.sf.log4jdbc.DriverSpy # com.mysql.jdbc.Driver
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss
     time-zone: GMT+8
@@ -41,7 +43,7 @@ spring:
     database: mysql
     show-sql: true
     hibernate:
-      ddl-auto: update
+      ddl-auto: none
       naming:
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
         implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyJpaCompliantImpl
@@ -49,6 +51,6 @@ spring:
       hibernate:
         dialect: org.hibernate.dialect.MySQL5Dialect
 #  spring.data.mongodb.uri=mongodb://name:pass@localhost:27017/test
-  data:
-    mongodb:
-      uri: mongodb://10.117.150.41:27017/bmitest
+#  data:
+#    mongodb:
+#      uri: mongodb://10.117.150.41:27017/bmitest

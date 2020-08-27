@@ -3,7 +3,7 @@ package com.crhms.seabow.controller;
 import com.alibaba.fastjson.JSON;
 import com.baidu.aip.face.AipFace;
 import com.baidu.aip.ocr.AipOcr;
-import com.crhms.seabow.annotation.NonWrapperResultAnnotation;
+import com.crhms.seabow.annotations.NonWrapperResultAnnotation;
 import org.json.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;

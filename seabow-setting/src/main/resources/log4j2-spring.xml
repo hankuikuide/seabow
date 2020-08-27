@@ -1,6 +1,6 @@
 <Configuration status="INFO" monitorInterval="30">
     <Properties>
-        <Property name="logpath">/home/logs/log/dev</Property>
+        <Property name="logpath">/logs/</Property>
     </Properties>
     <Appenders>
         <Console name="Console" target="SYSTEM_OUT">
@@ -81,6 +81,10 @@
 
     </Appenders>
     <Loggers>
+        <logger name="jdbc.audit" level="OFF"/>
+        <logger name="jdbc.resultset" level="OFF"/>
+        <logger name="jdbc.connection" level="OFF"/>
+        <logger name="jdbc.sqltiming" level="OFF"/>
         <Root level="info">
             <AppenderRef ref="Console"/>
             <AppenderRef ref="debug"/>

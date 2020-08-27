@@ -4,7 +4,6 @@ import com.crhms.seabow.model.Bill;
 import com.google.common.base.Stopwatch;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,7 +19,7 @@ import java.util.concurrent.TimeUnit;
 public class MongoController {
 
     @Autowired
-    private MongoTemplate mongoTemplate;
+    //private MongoTemplate mongoTemplate;
 
     @GetMapping("/mongotest")
     public void add_mongo() {
@@ -40,7 +39,7 @@ public class MongoController {
             bill.setPatientId(UUID.randomUUID().toString());
             bill.setPatientName(UUID.randomUUID().toString());
 
-            mongoTemplate.save(bill);
+            //mongoTemplate.save(bill);
         }
         Long consumeTime = stopwatch.stop().elapsed(TimeUnit.MILLISECONDS);
         log.info("耗时：" + consumeTime + "(毫秒).");
