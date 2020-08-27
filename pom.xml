@@ -176,7 +176,7 @@
         <repository>
             <id>nexus</id>
             <name>nexus</name>
-            <url>http://10.117.150.34:30881/repository/maven-public/</url>
+            <url>http://maven.aliyun.com/nexus/content/groups/public/</url>
             <releases>
                 <enabled>true</enabled>
             </releases>
